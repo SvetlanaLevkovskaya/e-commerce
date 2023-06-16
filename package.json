@@ -1,6 +1,5 @@
 {
-  "homepage": "https://svetlanalevkovskaya.github.io/e-commerce",
-  "name": "production_project_code_course",
+  "name": "e-commerce",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,17 +10,11 @@
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/utimur/production_project_code_source.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/utimur/production_project_code_source/issues"
-  },
-   "devDependencies": {
+  "homepage": "https://svetlanalevkovskaya.github.io/e-commerce",
+  "devDependencies": {
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
