@@ -2,10 +2,12 @@ import React from 'react';
 import { ProductList } from 'features/product-list';
 
 
-
 const MainPage = () => {
 	return (
-		<ProductList />
+		<>
+			<h1>MainPage</h1>
+			<ProductList />
+		</>
 	);
 };
 

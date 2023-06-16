@@ -10,7 +10,6 @@ export const Navbar = () => {
 				<Link to={ '/e-commerce/cart' } className={styles.link}>Cart Page</Link>
 				<Link to={ '/e-commerce/order' } className={styles.link}>Order Page</Link>
 			</div>
-
 		</div>
 	);
 };
