@@ -1,0 +1,19 @@
+.productgrid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.productitem {
+  width: 25%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.productimage {
+  width: 100%;
+  height: auto;
+}
+
+.producttitle {
+  margin-top: 0.5rem;
+}
