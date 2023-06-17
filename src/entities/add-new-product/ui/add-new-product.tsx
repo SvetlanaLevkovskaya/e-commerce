@@ -4,6 +4,7 @@ import { addProductAsync } from 'entities/add-new-product/model/slice/add-new-pr
 import styles from './add-new-product.module.scss'
 import { getCreatedProduct } from 'entities/add-new-product/model/selectors/get-created-product';
 import { ProductData } from 'entities/add-new-product/model/types/new-product';
+import { Modal } from 'shared/ui/modal/modal';
 
 
 export const AddNewProduct: React.FC = () => {
@@ -28,7 +29,7 @@ export const AddNewProduct: React.FC = () => {
 	};
 
 	const handleAddNewProduct = useCallback(() => {
-		const productData: ProductData  = {
+		const productData: ProductData = {
 			title: productName,
 			price: 1000,
 			description: 'some desc',
@@ -42,27 +43,19 @@ export const AddNewProduct: React.FC = () => {
 
 	return (
 		<div>
-			<button className={styles.addNewProductButton} onClick={openModal}>+</button>
+			<button className={styles.addNewProductButton} onClick={openModal}>
+				+
+			</button>
 
-			{isModalOpen && (
-				<div className={styles.modal}>
-					<div className={styles.modalContent}>
-						<h2>Add New Product</h2>
-						<input
-							type="text"
-							value={productName}
-							onChange={handleProductNameChange}
-						/>
-						<div className={styles.modalButtons}>
-							<button onClick={handleAddNewProduct}>Confirm</button>
-							<button onClick={closeModal}>Cancel</button>
-						</div>
-					</div>
-				</div>
-			)}
+			<Modal
+				isOpen={isModalOpen}
+				onClose={closeModal}
+				onConfirm={handleAddNewProduct}
+				productName={productName}
+				onProductNameChange={handleProductNameChange}
+			/>
 
 			{loading && <p>Loading...</p>}
-
 		</div>
 	);
 };
