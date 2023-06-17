@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { Product } from 'features/product-list/model/types/products';
-import { fetchProducts } from 'features/product-list/model/services/fetch-product-list';
+import { Product } from 'entities/product-list/model/types/products';
+import { fetchProducts } from 'entities/product-list/model/services/fetch-product-list';
 
 interface ProductsState {
 	products: Product[];

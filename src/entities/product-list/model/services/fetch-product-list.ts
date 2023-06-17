@@ -1,4 +1,4 @@
-import { Product } from 'features/product-list/model/types/products';
+import { Product } from 'entities/product-list/model/types/products';
 
 export const fetchProducts = (): Promise<Product[]> => {
 	//const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';

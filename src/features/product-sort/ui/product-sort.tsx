@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './product-sort.module.scss'
+import styles from './product-sort.module.scss';
 
 interface ProductSortProps {
 	sortBy: string;
@@ -29,7 +29,7 @@ export const ProductSort: React.FC<ProductSortProps> = ({
 	}
 
 	return (
-		<div>
+		<div className={styles.productSortContainer}>
 			<select
 				id="sortOption"
 				value={selectedValue}
