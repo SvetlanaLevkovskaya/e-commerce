@@ -1,6 +1,6 @@
 import { Product } from 'features/product-list/model/types/products';
 
-export const sortProducts = (products: Product[], sortBy: string, sortOrder: string): Product[] => {
+export const sortProductsByProperty = (products: Product[], sortBy: string, sortOrder: string): Product[] => {
 	return products.slice().sort((a, b) => {
 		if (sortBy === 'price') {
 			const priceDiff = a.price - b.price;

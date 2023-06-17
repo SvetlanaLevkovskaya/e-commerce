@@ -4,8 +4,8 @@ import { getProductList } from 'features/product-list/model/selectors/get-produc
 import { fetchProductsStart } from 'features/product-list/model/slice/propduct-slice';
 import styles from './product-list.module.scss'
 import { Product } from 'features/product-list/model/types/products';
-import { sortProducts } from 'features/product-sort/model/lib/get-sort-products';
-import { ProductSort } from 'features/product-sort/ui/product-sort';
+import { ProductSort, sortProductsByProperty } from 'features/product-sort';
+
 
 const ProductList: React.FC = () => {
 	const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const ProductList: React.FC = () => {
 	}
 
 	const [sortBy, sortOrder] = sortOption.split('-');
-	const sortedProducts = sortProducts(products, sortBy, sortOrder);
+	const sortedProducts = sortProductsByProperty(products, sortBy, sortOrder);
 
 	return (
 		<div className={ styles.productContainer }>
