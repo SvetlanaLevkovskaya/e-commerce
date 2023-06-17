@@ -12,10 +12,10 @@ export enum AppRoutes {
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
-	[AppRoutes.MAIN]: '/e-commerce/',
-	[AppRoutes.CART]: '/e-commerce/cart',
-	[AppRoutes.ORDER]: '/e-commerce/order',
-	[AppRoutes.NOT_FOUND]: '/e-commerce/*',
+	[AppRoutes.MAIN]: '/',
+	[AppRoutes.CART]: '/cart',
+	[AppRoutes.ORDER]: '/order',
+	[AppRoutes.NOT_FOUND]: '/*',
 }
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
