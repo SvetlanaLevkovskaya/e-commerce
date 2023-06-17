@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback,useState } from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductAsync } from 'entities/add-new-product/model/slice/add-new-product-slice';
 import styles from './add-new-product.module.scss'
@@ -43,19 +43,18 @@ export const AddNewProduct: React.FC = () => {
 
 	return (
 		<div>
-			<button className={styles.addNewProductButton} onClick={openModal}>
+			<button className={ styles.addNewProductButton } onClick={ openModal }>
 				+
 			</button>
 
 			<Modal
-				isOpen={isModalOpen}
-				onClose={closeModal}
-				onConfirm={handleAddNewProduct}
-				productName={productName}
-				onProductNameChange={handleProductNameChange}
+				isOpen={ isModalOpen }
+				onClose={ closeModal }
+				onConfirm={ handleAddNewProduct }
+				productName={ productName }
+				onProductNameChange={ handleProductNameChange }
 			/>
 
-			{loading && <p>Loading...</p>}
 		</div>
 	);
 };

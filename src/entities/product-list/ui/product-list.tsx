@@ -6,6 +6,7 @@ import styles from './product-list.module.scss'
 import { Product } from 'entities/product-list/model/types/products';
 import { ProductSort, sortProductsByProperty } from 'features/product-sort';
 import { ProductGrid } from 'features/product-grid';
+import { Loader } from 'shared/ui/loader/loader';
 
 const ProductList = () => {
 	const dispatch = useDispatch();
@@ -33,15 +34,15 @@ const ProductList = () => {
 	const sortedProducts = sortProductsByProperty(products, sortBy, sortOrder);
 
 	return (
-		<div className={styles.productListContainer}>
-			{loading ? (
-				<p>Loading...</p>
+		<div className={ styles.productListContainer }>
+			{ loading ? (
+				<Loader />
 			) : (
 				<>
-					<ProductSort sortBy={sortBy} sortOrder={sortOrder} onSortByChange={handleSortOptionChange} />
-					<ProductGrid products={sortedProducts} handleAddToCart={handleAddToCart} />
+					<ProductSort sortBy={ sortBy } sortOrder={ sortOrder } onSortByChange={ handleSortOptionChange } />
+					<ProductGrid products={ sortedProducts } handleAddToCart={ handleAddToCart } />
 				</>
-			)}
+			) }
 		</div>
 	);
 };
