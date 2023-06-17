@@ -9,3 +9,12 @@
 
   min-height: 100vh;
 }
+
+.page-wrapper {
+  flex-grow: 1;
+  padding: 80px 20px 20px 45px;
+  height: calc(100vh - var(--navbar-height));
+  overflow-y: auto;
+  width: 100%;
+}
+
