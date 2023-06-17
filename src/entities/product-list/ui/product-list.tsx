@@ -7,8 +7,6 @@ import { Product } from 'entities/product-list/model/types/products';
 import { ProductSort, sortProductsByProperty } from 'features/product-sort';
 import { ProductGrid } from 'features/product-grid';
 
-
-
 const ProductList = () => {
 	const dispatch = useDispatch();
 	const { products, loading, error } = useSelector(getProductList);
@@ -36,17 +34,16 @@ const ProductList = () => {
 
 	return (
 		<div className={styles.productListContainer}>
-			<ProductSort
-				sortBy={sortBy}
-				sortOrder={sortOrder}
-				onSortByChange={handleSortOptionChange}
-			/>
-			<ProductGrid
-				products={sortedProducts}
-				handleAddToCart={handleAddToCart}
-			/>
+			{loading ? (
+				<p>Loading...</p>
+			) : (
+				<>
+					<ProductSort sortBy={sortBy} sortOrder={sortOrder} onSortByChange={handleSortOptionChange} />
+					<ProductGrid products={sortedProducts} handleAddToCart={handleAddToCart} />
+				</>
+			)}
 		</div>
-	)
-}
+	);
+};
 
 export default ProductList;
