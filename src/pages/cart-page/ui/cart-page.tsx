@@ -1,10 +1,9 @@
 import React from 'react';
+import Cart from 'features/add-to-cart/ui/cart';
 
 const CartPage = () => {
 	return (
-		<div>
-			CartPage
-		</div>
+		<Cart />
 	);
 };
 

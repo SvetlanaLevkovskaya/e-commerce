@@ -1,9 +1,10 @@
 import { Product } from 'entities/product-list/model/types/products';
 import styles from './product-grid.module.scss'
 import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCreatedProduct } from 'entities/add-new-product/model/selectors/get-created-product';
 import { Loader } from 'shared/ui/loader/loader';
+import { addToCart } from 'features/add-to-cart/model/slice/add-to-cart-slice';
 
 interface ProductGridProps {
 	products: Product[];
@@ -11,10 +12,23 @@ interface ProductGridProps {
 }
 
 export const ProductGrid: FC<ProductGridProps> = ({ products, handleAddToCart }) => {
+	const dispatch = useDispatch();
+
 
 	const { loading, createdProduct, error } = useSelector(getCreatedProduct);
 
 	const allProducts = [...products, ...createdProduct];
+
+	const handleAddToCartProduct = (product: Product) => {
+
+		console.log(product)
+		if (handleAddToCart) {
+			handleAddToCart(product);
+			dispatch(addToCart(product));
+			/*const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+			localStorage.setItem('cart', JSON.stringify([...cartItems, product]));*/
+		}
+	};
 
 	return (
 		<div className={ styles.productGridContainer }>
@@ -29,7 +43,7 @@ export const ProductGrid: FC<ProductGridProps> = ({ products, handleAddToCart })
 							<div className={ styles.productPrice }>${ product.price }</div>
 							<button
 								className={ styles.addToCartButton }
-								onClick={ () => handleAddToCart && handleAddToCart(product) }
+								onClick={ () => handleAddToCartProduct(product) }
 							>
 								Add to Cart
 							</button>
