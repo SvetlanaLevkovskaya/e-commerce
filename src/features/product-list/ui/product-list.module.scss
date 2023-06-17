@@ -20,7 +20,8 @@
 }
 
 .productItem {
-  width: 15%;
+  flex: 0 0 calc(25% - 20px);
+  max-width: calc(25% - 20px);
   padding: 0.8rem;
   box-sizing: border-box;
   margin-bottom: 1rem;
@@ -31,13 +32,14 @@
 }
 
 .productItem:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
 }
 
 .productImage {
-  width: 70%;
+  width: 50%;
   height: 150px;
   border-radius: 8px;
+  background: #c2c4ce;
   margin-bottom: 0.5rem;
 }
 
@@ -61,11 +63,12 @@
 
 .productPrice {
   display: flex;
-  color: #604c94;
+  color: #e70ab2;
   font-weight: bold;
 }
 
 .addToCartButton {
+  width: 100%;
   margin: 0.5rem 0;
   padding: 0.5rem 1rem;
   background-color: #604c94;

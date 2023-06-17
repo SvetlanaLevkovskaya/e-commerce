@@ -36,9 +36,6 @@ export const ProductSort: React.FC<ProductSortProps> = ({
 				onChange={handleSortByChange}
 				className={styles.select}
 			>
-				<option disabled hidden value="">
-					Sort By
-				</option>
 				<option value="price-desc">Price High To Low</option>
 				<option value="price-asc">Price Low To High</option>
 				<option value="name-asc">A-Z</option>

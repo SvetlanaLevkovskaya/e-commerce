@@ -10,7 +10,7 @@ import { ProductSort } from 'features/product-sort/ui/product-sort';
 const ProductList: React.FC = () => {
 	const dispatch = useDispatch();
 	const { products, loading, error } = useSelector(getProductList);
-	const [sortOption, setSortOption] = useState('price-asc');
+	const [sortOption, setSortOption] = useState('price-desc');
 
 	useEffect(() => {
 		dispatch(fetchProductsStart());
