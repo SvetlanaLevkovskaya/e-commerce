@@ -25,8 +25,6 @@ export const ProductGrid: FC<ProductGridProps> = ({ products, handleAddToCart })
 		if (handleAddToCart) {
 			handleAddToCart(product);
 			dispatch(addToCart(product));
-			/*const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
-			localStorage.setItem('cart', JSON.stringify([...cartItems, product]));*/
 		}
 	};
 
