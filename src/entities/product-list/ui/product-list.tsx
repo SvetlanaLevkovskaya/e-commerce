@@ -22,7 +22,6 @@ const ProductList = () => {
 	};
 
 	const handleAddToCart = (product: Product) => {
-		//dispatch(addToCart(product));
 		console.log(product)
 	};
 

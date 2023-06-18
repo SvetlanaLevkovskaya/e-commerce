@@ -1,4 +1,4 @@
-h2 {
+.cartTitle {
   margin: 20px 40px;
   color: #6633CC;
 }
@@ -11,8 +11,8 @@ h2 {
 
 }
 
-p {
-  margin-bottom: 30px;
+.cartDescription {
+  margin-left: 80px;
 }
 
 
@@ -37,4 +37,8 @@ p {
   border: none;
   cursor: pointer;
   font-size: 16px;
+}
+
+.mapContainer {
+
 }

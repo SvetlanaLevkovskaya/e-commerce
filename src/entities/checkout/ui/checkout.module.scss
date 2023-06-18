@@ -1,0 +1,35 @@
+.checkoutContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.orderStepContainer {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.stepTitie {
+  margin-top: 10px;
+  color: #6633CC;
+}
+
+.inputField {
+  width: 300px;
+  height: 40px;
+  padding: 10px;
+}
+
+.orderSubmitButton {
+  margin: 15px 0;
+  background-color: #6633CC;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+
+}
+

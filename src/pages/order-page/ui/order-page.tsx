@@ -1,10 +1,9 @@
 import React from 'react';
+import { Checkout } from 'entities/checkout';
 
 const OrderPage = () => {
 	return (
-		<div>
-			OrderPage
-		</div>
+			<Checkout/>
 	);
 };
 
