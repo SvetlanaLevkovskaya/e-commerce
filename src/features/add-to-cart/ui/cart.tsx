@@ -4,17 +4,12 @@ import { getCreatedProduct } from 'features/add-to-cart/model/selectors/get-prod
 import { Product } from 'entities/product-list/model/types/products';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { removeFromCart } from 'features/add-to-cart/model/slice/add-to-cart-slice';
+import { removeFromCart } from 'features/add-to-cart/model/slice/cart-slice';
 import { Link } from 'react-router-dom';
 import styles from './cart.module.scss'
 
 
-
-interface CartProps {
-
-}
-
-const Cart: React.FC<CartProps> = () => {
+export const Cart= () => {
 	const dispatch = useDispatch();
 	const cartItems = useSelector(getCreatedProduct);
 
@@ -28,8 +23,6 @@ const Cart: React.FC<CartProps> = () => {
 	).toFixed(2);
 
 	const roundedTotalAmount = parseFloat(totalAmount);
-
-	console.log(roundedTotalAmount)
 
 	return (
 		<div>
@@ -60,4 +53,3 @@ const Cart: React.FC<CartProps> = () => {
 	);
 };
 
-export default Cart;

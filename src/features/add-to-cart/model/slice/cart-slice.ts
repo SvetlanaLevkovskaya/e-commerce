@@ -3,7 +3,7 @@ import { Product } from 'entities/product-list/model/types/products';
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
 
-const addToCartSlice = createSlice({
+const cartSlice = createSlice({
 	name: 'cart',
 	initialState: cartFromLocalStorage,
 	reducers: {
@@ -28,5 +28,5 @@ const addToCartSlice = createSlice({
 	},
 });
 
-export const { addToCart, removeFromCart } = addToCartSlice.actions;
-export const addToCartReducer = addToCartSlice.reducer;
+export const { addToCart, removeFromCart } = cartSlice.actions;
+export const cartReducer = cartSlice.reducer;

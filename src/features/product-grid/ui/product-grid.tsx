@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCreatedProduct } from 'entities/add-new-product/model/selectors/get-created-product';
 import { Loader } from 'shared/ui/loader/loader';
-import { addToCart } from 'features/add-to-cart/model/slice/add-to-cart-slice';
+import { addToCart } from 'features/add-to-cart/model/slice/cart-slice';
 
 interface ProductGridProps {
 	products: Product[];

@@ -1,5 +1,6 @@
 import React from 'react';
-import Cart from 'features/add-to-cart/ui/cart';
+import { Cart } from 'features/add-to-cart';
+
 
 const CartPage = () => {
 	return (
