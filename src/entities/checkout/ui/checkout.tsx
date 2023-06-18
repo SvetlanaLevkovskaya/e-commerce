@@ -4,8 +4,9 @@ import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import * as process from 'process';
-import axios from 'axios';
 import styles from './checkout.module.scss'
+import { useDispatch } from 'react-redux';
+import { clearCart } from 'features/add-to-cart/model/slice/cart-slice';
 
 
 type FormData = {
@@ -28,6 +29,7 @@ export const Checkout: React.FC = () => {
 	const [success, setSuccess] = useState(false);
 	const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
 	const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormData>();
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition(
@@ -36,15 +38,6 @@ export const Checkout: React.FC = () => {
 				setMapCenter({ lat: latitude, lng: longitude });
 				setValue('address', '');
 
-				try {
-					const response = await axios.get(
-						`https://maps.googleapis.com/maps/api/geocode/json?latlng=${ latitude },${ longitude }&key=${ process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }`,
-					);
-					const address = response.data.results[0].formatted_address;
-					setValue('address', address);
-				} catch (error) {
-					console.error('Error getting address:', error);
-				}
 			},
 			(error) => {
 				console.error('Error getting current location:', error);
@@ -67,6 +60,7 @@ export const Checkout: React.FC = () => {
 			setTimeout(() => {
 				const success = Math.random() < 0.99;
 				if (success) {
+					dispatch(clearCart())
 					resolve();
 				} else {
 					reject();
@@ -80,11 +74,11 @@ export const Checkout: React.FC = () => {
 	}
 
 	return (
-		<div className={styles.checkoutContainer}>
+		<div className={ styles.checkoutContainer }>
 			<form onSubmit={ handleSubmit(onSubmit) }>
 				{/* Step 1: Customer Information */ }
 				<div className={ styles.orderStepContainer }>
-					<h2 className={styles.stepTitie}>Step 1: Customer Information</h2>
+					<h2 className={ styles.stepTitie }>Step 1: Customer Information</h2>
 					<input
 						type="text"
 						{ ...register('name', { required: true }) }
@@ -104,7 +98,7 @@ export const Checkout: React.FC = () => {
 
 				{/* Step 2: Credit Card */ }
 				<div className={ styles.orderStepContainer }>
-					<h2 className={styles.stepTitie}>Step 2: Credit Card</h2>
+					<h2 className={ styles.stepTitie }>Step 2: Credit Card</h2>
 					<input
 						type="text"
 						{ ...register('cardNumber', { required: true }) }
@@ -132,7 +126,7 @@ export const Checkout: React.FC = () => {
 
 				{/* Step 3: Address Information */ }
 				<div className={ styles.orderStepContainer }>
-					<h2 className={styles.stepTitie}>Step 3: Address Information</h2>
+					<h2 className={ styles.stepTitie }>Step 3: Address Information</h2>
 					<input
 						type="text"
 						{ ...register('address', { required: true }) }
@@ -154,11 +148,11 @@ export const Checkout: React.FC = () => {
 				<button className={ styles.orderSubmitButton } type="submit">Place Order</button>
 			</form>
 
-				<LoadScript googleMapsApiKey={ process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }>
-					<GoogleMap mapContainerStyle={ containerStyle } center={ mapCenter } zoom={ 10 }>
-						<Marker position={ mapCenter } />
-					</GoogleMap>
-				</LoadScript>
+			<LoadScript googleMapsApiKey={ process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }>
+				<GoogleMap mapContainerStyle={ containerStyle } center={ mapCenter } zoom={ 10 }>
+					<Marker position={ mapCenter } />
+				</GoogleMap>
+			</LoadScript>
 
 		</div>
 
