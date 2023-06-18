@@ -1,1 +1,1 @@
-export { AddNewProduct } from './ui/add-new-product'
+export { AddNewProduct } from './ui/add-new-product';

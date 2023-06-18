@@ -13,9 +13,9 @@ export const fetchProducts = (): Promise<Product[]> => {
 				return res.json();
 			})
 			.catch((error) => {
-				throw new Error(`Failed to fetch: ${error.message}`);
+				throw new Error(`Failed to fetch: ${ error.message }`);
 			});
 	} catch (error) {
-		throw new Error(`Failed to fetch products: ${error.message}`);
+		throw new Error(`Failed to fetch products: ${ error.message }`);
 	}
 };

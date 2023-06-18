@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductList } from 'entities/product-list/model/selectors/get-product-list';
 import { fetchProductsStart } from 'entities/product-list/model/slice/propduct-slice';
-import styles from './product-list.module.scss'
 import { Product } from 'entities/product-list/model/types/products';
 import { ProductSort, sortProductsByProperty } from 'features/product-sort';
 import { ProductGrid } from 'features/product-grid';
 import { Loader } from 'shared/ui/loader/loader';
+import styles from './product-list.module.scss'
 
 const ProductList = () => {
 	const dispatch = useDispatch();

@@ -11,8 +11,8 @@ export const ProductSort: React.FC<ProductSortProps> = ({
 																													sortBy,
 																													sortOrder,
 																													onSortByChange,
-																																																			}) => {
-	const [selectedValue, setSelectedValue] = useState(`${sortBy}-${sortOrder}`);
+																												}) => {
+	const [selectedValue, setSelectedValue] = useState(`${ sortBy }-${ sortOrder }`);
 
 	useEffect(() => {
 		const savedValue = localStorage.getItem('sortOption');
@@ -29,12 +29,12 @@ export const ProductSort: React.FC<ProductSortProps> = ({
 	}
 
 	return (
-		<div className={styles.productSortContainer}>
+		<div className={ styles.productSortContainer }>
 			<select
 				id="sortOption"
-				value={selectedValue}
-				onChange={handleSortByChange}
-				className={styles.select}
+				value={ selectedValue }
+				onChange={ handleSortByChange }
+				className={ styles.select }
 			>
 				<option value="price-desc">Price High To Low</option>
 				<option value="price-asc">Price Low To High</option>

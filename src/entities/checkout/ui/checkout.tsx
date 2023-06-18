@@ -1,34 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import * as process from 'process';
-import styles from './checkout.module.scss'
 import { useDispatch } from 'react-redux';
 import { clearCart } from 'features/add-to-cart/model/slice/cart-slice';
+import { geocodeLatLng } from 'entities/checkout/model/lib/geocode-lat-lng';
+import { OrderFormData } from 'entities/checkout/model/types/form-data';
+import { CustomerInformation } from 'features/customer-information';
+import { CreditCardInformation } from 'features/credit-card-information';
+import { AddressInformation } from 'features/address-information';
+import { GoogleMapComponent } from 'features/google-map-component';
+import styles from './checkout.module.scss';
 
 
-type FormData = {
-	name: string;
-	email: string;
-	cardNumber: string;
-	expirationDate: string;
-	address: string;
-	city: string;
-	cvv: string;
-};
-
-const containerStyle = {
-	marginTop: '70px',
-	width: '100%',
-	height: '400px',
-};
-
-export const Checkout: React.FC = () => {
+export const Checkout: FC = () => {
 	const [success, setSuccess] = useState(false);
 	const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
-	const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormData>();
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		formState: { errors },
+	} = useForm<OrderFormData>();
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -36,8 +29,13 @@ export const Checkout: React.FC = () => {
 			async (position) => {
 				const { latitude, longitude } = position.coords;
 				setMapCenter({ lat: latitude, lng: longitude });
-				setValue('address', '');
 
+				try {
+					const address = await geocodeLatLng(latitude, longitude);
+					setValue('address', address);
+				} catch (error) {
+					console.error('Error geocoding coordinates:', error);
+				}
 			},
 			(error) => {
 				console.error('Error getting current location:', error);
@@ -75,87 +73,20 @@ export const Checkout: React.FC = () => {
 
 	return (
 		<div className={ styles.checkoutContainer }>
+
 			<form onSubmit={ handleSubmit(onSubmit) }>
-				{/* Step 1: Customer Information */ }
-				<div className={ styles.orderStepContainer }>
-					<h2 className={ styles.stepTitie }>Step 1: Customer Information</h2>
-					<input
-						type="text"
-						{ ...register('name', { required: true }) }
-						placeholder="Name"
-						className={ styles.inputField }
-					/>
-					{ errors.name && <span>This field is required</span> }
 
-					<input
-						type="email"
-						{ ...register('email', { required: true }) }
-						placeholder="Email"
-						className={ styles.inputField }
-					/>
-					{ errors.email && <span>This field is required</span> }
-				</div>
-
-				{/* Step 2: Credit Card */ }
-				<div className={ styles.orderStepContainer }>
-					<h2 className={ styles.stepTitie }>Step 2: Credit Card</h2>
-					<input
-						type="text"
-						{ ...register('cardNumber', { required: true }) }
-						placeholder="Card Number"
-						className={ styles.inputField }
-					/>
-					{ errors.cardNumber && <span>This field is required</span> }
-
-					<input
-						type="text"
-						{ ...register('expirationDate', { required: true }) }
-						placeholder="Expiration Date"
-						className={ styles.inputField }
-					/>
-					{ errors.expirationDate && <span>This field is required</span> }
-
-					<input
-						type="text"
-						{ ...register('cvv', { required: true }) }
-						placeholder="CVV"
-						className={ styles.inputField }
-					/>
-					{ errors.cvv && <span>This field is required</span> }
-				</div>
-
-				{/* Step 3: Address Information */ }
-				<div className={ styles.orderStepContainer }>
-					<h2 className={ styles.stepTitie }>Step 3: Address Information</h2>
-					<input
-						type="text"
-						{ ...register('address', { required: true }) }
-						onChange={ (e) => setValue('address', e.target.value) }
-						placeholder="Address"
-						className={ styles.inputField }
-					/>
-					{ errors.address && <span>This field is required</span> }
-
-					<input
-						type="text"
-						{ ...register('city', { required: true }) }
-						placeholder="City"
-						className={ styles.inputField }
-					/>
-					{ errors.city && <span>This field is required</span> }
-				</div>
+				<CustomerInformation register={ register } errors={ errors } />
+				<CreditCardInformation register={ register } errors={ errors } />
+				<AddressInformation register={ register } setValue={ setValue } errors={ errors } />
 
 				<button className={ styles.orderSubmitButton } type="submit">Place Order</button>
+
 			</form>
 
-			<LoadScript googleMapsApiKey={ process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }>
-				<GoogleMap mapContainerStyle={ containerStyle } center={ mapCenter } zoom={ 10 }>
-					<Marker position={ mapCenter } />
-				</GoogleMap>
-			</LoadScript>
+			<GoogleMapComponent mapCenter={ mapCenter } />
 
 		</div>
-
 	);
 };
 

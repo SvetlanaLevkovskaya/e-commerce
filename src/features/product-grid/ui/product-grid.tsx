@@ -20,8 +20,6 @@ export const ProductGrid: FC<ProductGridProps> = ({ products, handleAddToCart })
 	const allProducts = [...products, ...createdProduct];
 
 	const handleAddToCartProduct = (product: Product) => {
-
-		console.log(product)
 		if (handleAddToCart) {
 			handleAddToCart(product);
 			dispatch(addToCart(product));

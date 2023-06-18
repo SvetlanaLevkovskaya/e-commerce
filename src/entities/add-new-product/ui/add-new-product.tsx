@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductAsync } from 'entities/add-new-product/model/slice/add-new-product-slice';
-import styles from './add-new-product.module.scss'
 import { getCreatedProduct } from 'entities/add-new-product/model/selectors/get-created-product';
 import { ProductData } from 'entities/add-new-product/model/types/new-product';
 import { Modal } from 'shared/ui/modal/modal';
+import styles from './add-new-product.module.scss';
 
 
 export const AddNewProduct: React.FC = () => {

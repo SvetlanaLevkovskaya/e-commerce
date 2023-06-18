@@ -1,0 +1,17 @@
+.orderStepContainer {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.stepTitie {
+  margin-top: 10px;
+  color: #6633CC;
+}
+
+.inputField {
+  width: 300px;
+  height: 40px;
+  padding: 10px;
+}

@@ -10,12 +10,12 @@ interface ModalProps {
 }
 
 export const Modal: FC<ModalProps> = ({
-																 isOpen,
-																 onClose,
-																 onConfirm,
-																 productName,
-																 onProductNameChange,
-															 }) => {
+																				isOpen,
+																				onClose,
+																				onConfirm,
+																				productName,
+																				onProductNameChange,
+																			}) => {
 	if (!isOpen) return null;
 
 	return (
