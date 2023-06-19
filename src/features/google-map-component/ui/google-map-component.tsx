@@ -12,14 +12,31 @@ const containerStyle = {
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
 
 const defaultOptions = {
+	streetViewControl: false,
+	rotateControl: false,
 	styles: defaultTheme,
 }
 
-export const GoogleMapComponent: FC<{ mapCenter: any }> = ({ mapCenter }) => (
+interface GoogleMapComponentProps {
+	mapCenter: any;
+	selectedLocation: any;
+	handleMapClick: (event: any) => void;
+}
 
-	<LoadScript googleMapsApiKey={ API_KEY }>
-		<GoogleMap mapContainerStyle={ containerStyle } center={ mapCenter } zoom={ 10 } options={ defaultOptions }>
-			<Marker position={ mapCenter } />
+export const GoogleMapComponent: FC<GoogleMapComponentProps> = ({
+																																	mapCenter,
+																																	selectedLocation,
+																																	handleMapClick,
+																																}) => (
+	<LoadScript googleMapsApiKey={API_KEY}>
+		<GoogleMap
+			mapContainerStyle={containerStyle}
+			center={mapCenter}
+			zoom={10}
+			options={defaultOptions}
+			onClick={handleMapClick}
+		>
+			{selectedLocation ? <Marker position={selectedLocation} /> : <Marker position={mapCenter} />}
 		</GoogleMap>
 	</LoadScript>
 );
