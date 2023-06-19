@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getCreatedProduct } from 'features/add-to-cart/model/selectors/get-product-to-cart';
+import { getCreatedProduct } from 'entities/cart/model/selectors/get-product-to-cart';
 import styles from './navbar.module.scss';
 
 export const Navbar = () => {

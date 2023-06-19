@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cart } from 'features/add-to-cart';
+import { Cart } from 'entities/cart';
 
 
 const CartPage = () => {

@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
 import { useDispatch } from 'react-redux';
-import { clearCart } from 'features/add-to-cart/model/slice/cart-slice';
+import { clearCart } from 'entities/cart/model/slice/cart-slice';
 import { geocodeLatLng } from 'entities/checkout/model/lib/geocode-lat-lng';
 import { OrderFormData } from 'entities/checkout/model/types/form-data';
 import { CustomerInformation } from 'features/customer-information';

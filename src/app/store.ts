@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { productReducer } from 'entities/product-list/model/slice/propduct-slice';
 import { productAddReducer } from 'entities/add-new-product/model/slice/add-new-product-slice';
-import { cartReducer } from 'features/add-to-cart/model/slice/cart-slice';
+import { cartReducer } from 'entities/cart/model/slice/cart-slice';
 
 
 const store = configureStore({

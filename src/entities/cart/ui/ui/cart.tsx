@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCreatedProduct } from 'features/add-to-cart/model/selectors/get-product-to-cart';
+import { getCreatedProduct } from 'entities/cart/model/selectors/get-product-to-cart';
 import { Product } from 'entities/product-list/model/types/products';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { removeFromCart } from 'features/add-to-cart/model/slice/cart-slice';
+import { removeFromCart } from 'entities/cart/model/slice/cart-slice';
 import { Link } from 'react-router-dom';
 import styles from './cart.module.scss'
 
