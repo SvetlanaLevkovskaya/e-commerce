@@ -22,6 +22,7 @@ export const Checkout: FC = () => {
 		register,
 		handleSubmit,
 		setValue,
+		reset,
 		formState: { errors },
 	} = useForm<OrderFormData>();
 	const dispatch = useDispatch();
@@ -73,6 +74,7 @@ export const Checkout: FC = () => {
 		setValue('address', formattedAddress);
 		setValue('city', city);
 		setValue('country', country);
+
 	};
 
 	const onSubmit: SubmitHandler<FormData> = async () => {

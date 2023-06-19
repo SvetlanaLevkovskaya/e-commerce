@@ -33,11 +33,11 @@ export const geocodeLatLng = (lat: number, lng: number): Promise<GeocodedAddress
 
 					const streetAddress = results.find(address => address.types.includes('street_address'))
 
-					console.log('streetAddress', streetAddress.formatted_address)
+					//console.log('streetAddress', streetAddress.formatted_address)
 
 
 					const geocodedAddress: GeocodedAddress = {
-						formattedAddress: streetAddress.formatted_address,
+						formattedAddress: results[0].formatted_address,
 						city: city,
 						country: countryName,
 					};
