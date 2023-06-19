@@ -32,7 +32,20 @@ export const Checkout: FC = () => {
 
 				try {
 					const address = await geocodeLatLng(latitude, longitude);
+
+
+					const cityArray = address.split(' ');
+					const [city, index, country] = cityArray.slice(-3);
+					const remainingAddress = cityArray.slice(0, -3).join(' ');
+
+					console.log('City:', city);
+					console.log('Index:', index);
+					console.log('Country:', country);
+					console.log('Remaining Address:', remainingAddress);
+
 					setValue('address', address);
+					setValue('city', city);
+					setValue('country', country);
 				} catch (error) {
 					console.error('Error geocoding coordinates:', error);
 				}

@@ -4,6 +4,7 @@ export interface OrderFormData {
 	cardNumber: string;
 	expirationDate: string;
 	address: string;
+	country: string;
 	city: string;
 	cvv: string;
 }

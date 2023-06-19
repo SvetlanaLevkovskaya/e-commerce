@@ -20,5 +20,9 @@ export const AddressInformation: FC<{ register: any; setValue: any; errors: any 
 
 		<input type="text" { ...register('city', { required: true }) } placeholder="City" className={ styles.inputField } />
 		{ errors.city && <span>This field is required</span> }
+
+		<input type="text" { ...register('country', { required: true }) } placeholder="Country" className={ styles.inputField } />
+		{ errors.city && <span>This field is required</span> }
+
 	</div>
 );
