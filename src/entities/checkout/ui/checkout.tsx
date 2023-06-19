@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import Confetti from 'react-confetti';
 import { useDispatch } from 'react-redux';
 import { clearCart } from 'entities/cart/model/slice/cart-slice';
-import { geocodeLatLng } from 'entities/checkout/model/lib/geocode-lat-lng';
+import { GeocodedAddress, geocodeLatLng } from 'entities/checkout/model/lib/geocode-lat-lng';
 import { OrderFormData } from 'entities/checkout/model/types/form-data';
 import { CustomerInformation } from 'features/customer-information';
 import { CreditCardInformation } from 'features/credit-card-information';
@@ -35,8 +35,8 @@ export const Checkout: FC = () => {
 				setSelectedLocation({ lat: latitude, lng: longitude });
 				setLoading(false);
 
-				const address = await getAddressFromCoordinates(latitude, longitude);
-				handleAddressUpdate(address);
+				const geocodedAddress = await getAddressFromCoordinates(latitude, longitude);
+				handleAddressUpdate(geocodedAddress);
 			} catch (error) {
 				console.error('Error getting current location:', error);
 				setLoading(false);
@@ -54,25 +54,23 @@ export const Checkout: FC = () => {
 
 	const getAddressFromCoordinates = async (lat: number, lng: number) => {
 		try {
-			const address = await geocodeLatLng(lat, lng);
-			return address;
+			const geocodedAddress = await geocodeLatLng(lat, lng);
+			return geocodedAddress;
 		} catch (error) {
 			console.error('Error geocoding coordinates:', error);
 			throw error;
 		}
 	};
 
-	const handleAddressUpdate = (address: string) => {
-		const cityArray = address.split(' ');
-		const [city, index, country] = cityArray.slice(-3);
-		const remainingAddress = cityArray.slice(0, -3).join(' ');
+	const handleAddressUpdate = (geocodedAddress: GeocodedAddress) => {
+		const { formattedAddress, city, country } = geocodedAddress;
 
 		console.log('City:', city);
-		console.log('Index:', index);
 		console.log('Country:', country);
-		console.log('Remaining Address:', remainingAddress);
+		console.log('formattedAddress:', formattedAddress);
 
-		setValue('address', address);
+
+		setValue('address', formattedAddress);
 		setValue('city', city);
 		setValue('country', country);
 	};
