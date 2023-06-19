@@ -31,10 +31,13 @@ export const geocodeLatLng = (lat: number, lng: number): Promise<GeocodedAddress
 					console.log('results[0].formatted_address', results[0].formatted_address)
 					console.log('addressComponents', addressComponents)
 
+					const streetAddress = results.find(address => address.types.includes('street_address'))
+
+					console.log('streetAddress', streetAddress.formatted_address)
 
 
 					const geocodedAddress: GeocodedAddress = {
-						formattedAddress: results[0].formatted_address,
+						formattedAddress: streetAddress.formatted_address,
 						city: city,
 						country: countryName,
 					};
